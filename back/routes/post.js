@@ -10,7 +10,7 @@ const { isLoggedIn } = require('./middleware');
 const router = express.Router();
 
 AWS.config.update({
-  region: 'ap-northeast-2',
+  region: 'ap-northeast-1',
   accessKeyId: process.env.S3_ACCESS_KEY_ID,
   secretAccessKey: process.env.S3_SECRET_ACCESS_KEY,
 });
@@ -18,7 +18,7 @@ AWS.config.update({
 const upload = multer({
   storage: multerS3({
     s3: new AWS.S3(),
-    bucket: 'reactnodebird',
+    bucket: 'jobhub-next',
     key(req, file, cb) {
       cb(null, `original/${+new Date()}${path.basename(file.originalname)}`);
     },
